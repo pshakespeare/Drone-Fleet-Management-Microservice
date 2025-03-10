@@ -26,7 +26,7 @@ A modern, containerized Flask microservice for managing drone fleet data. This s
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/drone_db.git
+   git clone https://github.com/pshakespeare/Drone-Fleet-Management-Microservice.git
    cd drone_db
    ```
 
