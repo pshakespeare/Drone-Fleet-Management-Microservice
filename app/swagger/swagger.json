@@ -1,0 +1,751 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Drone Database API",
+    "description": "API for managing cargo drone fleets, vendors, and maintenance",
+    "version": "1.0.0",
+    "contact": {
+      "email": "support@dronedatabase.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000/api/v1",
+      "description": "Development server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "vendors",
+      "description": "Vendor management operations"
+    },
+    {
+      "name": "drones",
+      "description": "Drone management operations"
+    }
+  ],
+  "paths": {
+    "/vendors": {
+      "post": {
+        "tags": ["vendors"],
+        "summary": "Create a new vendor",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VendorCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Vendor created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vendor"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "get": {
+        "tags": ["vendors"],
+        "summary": "Get all vendors",
+        "responses": {
+          "200": {
+            "description": "List of vendors",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Vendor"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vendors/{vendor_id}": {
+      "parameters": [
+        {
+          "name": "vendor_id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "tags": ["vendors"],
+        "summary": "Get vendor by ID",
+        "responses": {
+          "200": {
+            "description": "Vendor found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vendor"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Vendor not found"
+          }
+        }
+      },
+      "put": {
+        "tags": ["vendors"],
+        "summary": "Update vendor",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VendorUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Vendor updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vendor"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Vendor not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["vendors"],
+        "summary": "Delete vendor",
+        "responses": {
+          "204": {
+            "description": "Vendor deleted"
+          },
+          "404": {
+            "description": "Vendor not found"
+          }
+        }
+      }
+    },
+    "/drones/onboard": {
+      "post": {
+        "tags": ["drones"],
+        "summary": "Onboard new drones",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DroneOnboarding"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Drones onboarded successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "vendor": {
+                      "type": "string"
+                    },
+                    "drones": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/drones": {
+      "get": {
+        "tags": ["drones"],
+        "summary": "Get all drones",
+        "parameters": [
+          {
+            "name": "vendor_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by vendor ID"
+          },
+          {
+            "name": "min_payload",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            },
+            "description": "Filter by minimum payload capacity (kg)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of drones",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Drone"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/drones/{drone_id}": {
+      "parameters": [
+        {
+          "name": "drone_id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "tags": ["drones"],
+        "summary": "Get drone by ID",
+        "responses": {
+          "200": {
+            "description": "Drone found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Drone"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Drone not found"
+          }
+        }
+      },
+      "put": {
+        "tags": ["drones"],
+        "summary": "Update drone",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DroneUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Drone updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Drone"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Drone not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["drones"],
+        "summary": "Delete drone",
+        "responses": {
+          "204": {
+            "description": "Drone deleted"
+          },
+          "404": {
+            "description": "Drone not found"
+          }
+        }
+      }
+    },
+    "/drones/{drone_id}/maintenance": {
+      "parameters": [
+        {
+          "name": "drone_id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "tags": ["drones"],
+        "summary": "Record maintenance for a drone",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MaintenanceRecord"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Maintenance recorded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Drone not found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "VendorCreate": {
+        "type": "object",
+        "required": ["vendor_id", "name", "contact_email", "contact_phone"],
+        "properties": {
+          "vendor_id": {
+            "type": "string",
+            "example": "DV-123456"
+          },
+          "name": {
+            "type": "string",
+            "example": "Heavy Lift Drone Solutions"
+          },
+          "contact_email": {
+            "type": "string",
+            "format": "email",
+            "example": "fleet@heavyliftdrones.com"
+          },
+          "contact_phone": {
+            "type": "string",
+            "example": "+1-555-0123-4567"
+          },
+          "specialization": {
+            "type": "string",
+            "example": "Industrial cargo transport"
+          }
+        }
+      },
+      "Vendor": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/VendorCreate"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "readOnly": true
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "updated_at": {
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              }
+            }
+          }
+        ]
+      },
+      "VendorUpdate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "contact_email": {
+            "type": "string",
+            "format": "email"
+          },
+          "contact_phone": {
+            "type": "string"
+          },
+          "specialization": {
+            "type": "string"
+          }
+        }
+      },
+      "DroneOnboarding": {
+        "type": "object",
+        "required": ["vendor", "drones"],
+        "properties": {
+          "vendor": {
+            "$ref": "#/components/schemas/VendorCreate"
+          },
+          "drones": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DroneCreate"
+            }
+          }
+        }
+      },
+      "DroneCreate": {
+        "type": "object",
+        "required": [
+          "drone_id",
+          "manufacturer",
+          "model",
+          "serial_number",
+          "manufacture_date",
+          "drone_type",
+          "lift_system"
+        ],
+        "properties": {
+          "drone_id": {
+            "type": "string",
+            "example": "HL-001"
+          },
+          "manufacturer": {
+            "type": "string",
+            "example": "Griff Aviation"
+          },
+          "model": {
+            "type": "string",
+            "example": "Griff 300"
+          },
+          "serial_number": {
+            "type": "string",
+            "example": "GA300-123456"
+          },
+          "manufacture_date": {
+            "type": "string",
+            "format": "date",
+            "example": "2023-12-15"
+          },
+          "drone_type": {
+            "type": "string",
+            "example": "Octocopter"
+          },
+          "lift_system": {
+            "type": "string",
+            "example": "Electric multi-rotor"
+          },
+          "technical_specs": {
+            "$ref": "#/components/schemas/TechnicalSpecs"
+          },
+          "regulatory_info": {
+            "$ref": "#/components/schemas/RegulatoryInfo"
+          },
+          "cargo_capabilities": {
+            "$ref": "#/components/schemas/CargoCapabilities"
+          },
+          "equipment": {
+            "$ref": "#/components/schemas/Equipment"
+          }
+        }
+      },
+      "Drone": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/DroneCreate"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "readOnly": true
+              },
+              "vendor_id": {
+                "type": "integer",
+                "readOnly": true
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "updated_at": {
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              }
+            }
+          }
+        ]
+      },
+      "TechnicalSpecs": {
+        "type": "object",
+        "required": [
+          "empty_weight_kg",
+          "length_cm",
+          "width_cm",
+          "height_cm",
+          "max_takeoff_weight_kg",
+          "max_speed_loaded_kph",
+          "max_flight_time_loaded_minutes",
+          "operational_range_loaded_km"
+        ],
+        "properties": {
+          "empty_weight_kg": {
+            "type": "number",
+            "example": 75.0
+          },
+          "length_cm": {
+            "type": "number",
+            "example": 250.0
+          },
+          "width_cm": {
+            "type": "number",
+            "example": 250.0
+          },
+          "height_cm": {
+            "type": "number",
+            "example": 85.0
+          },
+          "max_takeoff_weight_kg": {
+            "type": "number",
+            "example": 300.0
+          },
+          "max_speed_loaded_kph": {
+            "type": "number",
+            "example": 45.0
+          },
+          "max_flight_time_loaded_minutes": {
+            "type": "integer",
+            "example": 30
+          },
+          "operational_range_loaded_km": {
+            "type": "number",
+            "example": 8.0
+          }
+        }
+      },
+      "RegulatoryInfo": {
+        "type": "object",
+        "required": [
+          "registration_number",
+          "certification_type",
+          "registration_expiry",
+          "operation_type"
+        ],
+        "properties": {
+          "registration_number": {
+            "type": "string",
+            "example": "FA123456789"
+          },
+          "certification_type": {
+            "type": "string",
+            "example": "Part 107 + SAC"
+          },
+          "special_airworthiness_cert": {
+            "type": "boolean",
+            "example": true
+          },
+          "registration_expiry": {
+            "type": "string",
+            "format": "date",
+            "example": "2025-12-15"
+          },
+          "operation_type": {
+            "type": "string",
+            "example": "BVLOS approved"
+          },
+          "jurisdictions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": ["USA", "Norway"]
+          }
+        }
+      },
+      "CargoCapabilities": {
+        "type": "object",
+        "required": [
+          "max_payload_kg",
+          "cargo_volume_m3",
+          "lift_mechanism",
+          "cargo_securing_method",
+          "load_distribution",
+          "ground_clearance_cm"
+        ],
+        "properties": {
+          "max_payload_kg": {
+            "type": "number",
+            "example": 225.0
+          },
+          "cargo_volume_m3": {
+            "type": "number",
+            "example": 2.5
+          },
+          "lift_mechanism": {
+            "type": "string",
+            "example": "Integrated heavy-lift frame"
+          },
+          "cargo_securing_method": {
+            "type": "string",
+            "example": "Quick-lock cargo pods"
+          },
+          "load_distribution": {
+            "type": "string",
+            "example": "Central balanced mount"
+          },
+          "ground_clearance_cm": {
+            "type": "number",
+            "example": 45.0
+          },
+          "approved_cargo_types": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": ["Construction materials", "Industrial equipment"]
+          }
+        }
+      },
+      "Equipment": {
+        "type": "object",
+        "required": [
+          "motor_type",
+          "number_of_motors",
+          "motor_power_kw"
+        ],
+        "properties": {
+          "motor_type": {
+            "type": "string",
+            "example": "Brushless DC"
+          },
+          "number_of_motors": {
+            "type": "integer",
+            "example": 8
+          },
+          "motor_power_kw": {
+            "type": "number",
+            "example": 12.5
+          },
+          "redundancy_features": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": ["Motor failure compensation", "Backup power distribution"]
+          },
+          "safety_features": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": ["Load cell sensors", "Dynamic balance control"]
+          },
+          "additional_sensors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": ["Load stress monitoring", "Wind speed sensors"]
+          }
+        }
+      },
+      "MaintenanceRecord": {
+        "type": "object",
+        "required": [
+          "last_maintenance_date",
+          "flight_hours",
+          "load_cycles",
+          "frame_inspection_date",
+          "warranty_expiry",
+          "maintenance_schedule"
+        ],
+        "properties": {
+          "last_maintenance_date": {
+            "type": "string",
+            "format": "date",
+            "example": "2024-02-15"
+          },
+          "flight_hours": {
+            "type": "number",
+            "example": 120.5
+          },
+          "load_cycles": {
+            "type": "integer",
+            "example": 450
+          },
+          "frame_inspection_date": {
+            "type": "string",
+            "format": "date",
+            "example": "2024-02-15"
+          },
+          "warranty_expiry": {
+            "type": "string",
+            "format": "date",
+            "example": "2025-12-15"
+          },
+          "maintenance_schedule": {
+            "type": "string",
+            "example": "biweekly"
+          },
+          "motor_hours": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "number"
+            },
+            "example": {
+              "motor_1": 120.5,
+              "motor_2": 120.5
+            }
+          }
+        }
+      }
+    }
+  }
+} 

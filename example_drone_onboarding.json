@@ -1,0 +1,257 @@
+{
+  "vendor_info": {
+    "vendor_id": "DV-123456",
+    "vendor_name": "Heavy Lift Drone Solutions",
+    "contact_email": "fleet@heavyliftdrones.com",
+    "contact_phone": "+1-555-0123-4567",
+    "specialization": "Industrial cargo transport"
+  },
+  "onboarding_timestamp": "2024-03-20T14:30:00Z",
+  "drones": [
+    {
+      "drone_id": "HL-001",
+      "basic_info": {
+        "manufacturer": "Griff Aviation",
+        "model": "Griff 300",
+        "serial_number": "GA300-123456",
+        "manufacture_date": "2023-12-15",
+        "type": "Octocopter",
+        "lift_system": "Electric multi-rotor"
+      },
+      "technical_specs": {
+        "empty_weight_kg": 75.0,
+        "dimensions_cm": {
+          "length": 250.0,
+          "width": 250.0,
+          "height": 85.0
+        },
+        "max_takeoff_weight_kg": 300.0,
+        "max_speed_loaded_kph": 45,
+        "max_flight_time_loaded_minutes": 30,
+        "operational_range_loaded_km": 8
+      },
+      "regulatory_info": {
+        "registration_number": "FA123456789",
+        "certification_type": "Part 107 + SAC",
+        "special_airworthiness_cert": "YES",
+        "registration_expiry": "2025-12-15",
+        "approved_jurisdictions": ["USA", "Norway"],
+        "operation_type": "BVLOS approved"
+      },
+      "cargo_capabilities": {
+        "max_payload_kg": 225.0,
+        "cargo_volume_m3": 2.5,
+        "lift_mechanism": "Integrated heavy-lift frame",
+        "cargo_securing_method": "Quick-lock cargo pods",
+        "load_distribution": "Central balanced mount",
+        "ground_clearance_cm": 45,
+        "cargo_types_approved": [
+          "Construction materials",
+          "Industrial equipment",
+          "Emergency supplies"
+        ]
+      },
+      "equipment": {
+        "lift_system": {
+          "motor_type": "Brushless DC",
+          "number_of_motors": 8,
+          "motor_power_kw": 12.5,
+          "redundancy_features": [
+            "Motor failure compensation",
+            "Backup power distribution"
+          ]
+        },
+        "safety_features": [
+          "Load cell sensors",
+          "Dynamic balance control",
+          "Emergency cargo release",
+          "Redundant power system"
+        ],
+        "additional_sensors": [
+          "Load stress monitoring",
+          "Wind speed sensors",
+          "Cargo temperature monitoring"
+        ]
+      },
+      "maintenance": {
+        "last_maintenance_date": "2024-02-15",
+        "flight_hours": 120,
+        "load_cycles": 450,
+        "motor_hours": {
+          "motor_1": 120,
+          "motor_2": 120,
+          "motor_3": 118,
+          "motor_4": 120,
+          "motor_5": 120,
+          "motor_6": 120,
+          "motor_7": 119,
+          "motor_8": 120
+        },
+        "frame_inspection_date": "2024-02-15",
+        "warranty_expiry": "2025-12-15",
+        "maintenance_schedule": "biweekly"
+      }
+    },
+    {
+      "drone_id": "HL-002",
+      "basic_info": {
+        "manufacturer": "Volocopter",
+        "model": "VoloDrone",
+        "serial_number": "VLD789012",
+        "manufacture_date": "2024-01-10",
+        "type": "Multicopter",
+        "lift_system": "Electric multi-rotor"
+      },
+      "technical_specs": {
+        "empty_weight_kg": 60.0,
+        "dimensions_cm": {
+          "length": 280.0,
+          "width": 280.0,
+          "height": 95.0
+        },
+        "max_takeoff_weight_kg": 200.0,
+        "max_speed_loaded_kph": 55,
+        "max_flight_time_loaded_minutes": 40,
+        "operational_range_loaded_km": 10
+      },
+      "regulatory_info": {
+        "registration_number": "FA987654321",
+        "certification_type": "Part 107 + SAC",
+        "special_airworthiness_cert": "YES",
+        "registration_expiry": "2025-01-10",
+        "approved_jurisdictions": ["Germany", "EU"],
+        "operation_type": "BVLOS approved"
+      },
+      "cargo_capabilities": {
+        "max_payload_kg": 140.0,
+        "cargo_volume_m3": 2.0,
+        "lift_mechanism": "Modular payload frame",
+        "cargo_securing_method": "Universal attachment system",
+        "load_distribution": "Adaptive balance system",
+        "ground_clearance_cm": 40,
+        "cargo_types_approved": [
+          "Agricultural supplies",
+          "Medical equipment",
+          "Industrial parts"
+        ]
+      },
+      "equipment": {
+        "lift_system": {
+          "motor_type": "Synchronous electric",
+          "number_of_motors": 18,
+          "motor_power_kw": 8.0,
+          "redundancy_features": [
+            "Triple redundant flight control",
+            "Distributed power system"
+          ]
+        },
+        "safety_features": [
+          "Active payload monitoring",
+          "Automated weight distribution",
+          "Emergency parachute system",
+          "Redundant communication"
+        ],
+        "additional_sensors": [
+          "Cargo weight distribution",
+          "Structural stress monitoring",
+          "Environmental sensors"
+        ]
+      },
+      "maintenance": {
+        "last_maintenance_date": "2024-03-01",
+        "flight_hours": 85,
+        "load_cycles": 320,
+        "motor_hours": {
+          "motor_group_1": 85,
+          "motor_group_2": 84,
+          "motor_group_3": 85
+        },
+        "frame_inspection_date": "2024-03-01",
+        "warranty_expiry": "2025-01-10",
+        "maintenance_schedule": "weekly"
+      }
+    },
+    {
+      "drone_id": "HL-003",
+      "basic_info": {
+        "manufacturer": "AutoCopter",
+        "model": "Thor XL",
+        "serial_number": "THOR345678",
+        "manufacture_date": "2024-02-01",
+        "type": "Hexacopter",
+        "lift_system": "Hybrid-electric"
+      },
+      "technical_specs": {
+        "empty_weight_kg": 85.0,
+        "dimensions_cm": {
+          "length": 320.0,
+          "width": 320.0,
+          "height": 110.0
+        },
+        "max_takeoff_weight_kg": 350.0,
+        "max_speed_loaded_kph": 65,
+        "max_flight_time_loaded_minutes": 90,
+        "operational_range_loaded_km": 25
+      },
+      "regulatory_info": {
+        "registration_number": "FA456789123",
+        "certification_type": "Part 107 + SAC",
+        "special_airworthiness_cert": "YES",
+        "registration_expiry": "2025-02-01",
+        "approved_jurisdictions": ["USA", "Canada"],
+        "operation_type": "BVLOS approved"
+      },
+      "cargo_capabilities": {
+        "max_payload_kg": 265.0,
+        "cargo_volume_m3": 3.0,
+        "lift_mechanism": "Heavy-duty cargo frame",
+        "cargo_securing_method": "Multi-point locking system",
+        "load_distribution": "Dynamic balancing system",
+        "ground_clearance_cm": 50,
+        "cargo_types_approved": [
+          "Heavy machinery",
+          "Construction equipment",
+          "Bulk materials"
+        ]
+      },
+      "equipment": {
+        "lift_system": {
+          "motor_type": "Hybrid-electric",
+          "number_of_motors": 6,
+          "motor_power_kw": 25.0,
+          "redundancy_features": [
+            "Hybrid power backup",
+            "Independent motor controllers"
+          ]
+        },
+        "safety_features": [
+          "Real-time load monitoring",
+          "Automatic stability control",
+          "Emergency fuel cells",
+          "Backup power distribution"
+        ],
+        "additional_sensors": [
+          "Strain gauges",
+          "Vibration monitoring",
+          "Power system analytics"
+        ]
+      },
+      "maintenance": {
+        "last_maintenance_date": "2024-02-20",
+        "flight_hours": 45,
+        "load_cycles": 180,
+        "motor_hours": {
+          "motor_1": 45,
+          "motor_2": 45,
+          "motor_3": 44,
+          "motor_4": 45,
+          "motor_5": 45,
+          "motor_6": 45
+        },
+        "frame_inspection_date": "2024-02-20",
+        "warranty_expiry": "2025-02-01",
+        "maintenance_schedule": "biweekly"
+      }
+    }
+  ]
+} 
